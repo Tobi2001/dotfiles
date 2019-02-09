@@ -34,6 +34,12 @@ set t_Co=256
 
 let g:tex_flavor='latex'
 
+"Colors
+let g:afterglow_blackout=1
+let g:afterglow_italic_comments=1 
+colorscheme afterglow
+
+
 let g:vimtex_view_general_viewer='okular'
 let g:vimtex_view_general_options= '--unique @pdf\#src:@line@tex'
 let g:vimtex_view_general_options_latexmk = '--unique'
@@ -90,4 +96,5 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 set completeopt-=preview
 let g:ycm_python_binary_path = '/usr/bin/python2.7'
 "autocmd FileType javascript setlocal omnifunc=tern#Complete
+highlight YcmErrorSection ctermfg=red cterm=underline
 
