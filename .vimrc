@@ -45,7 +45,7 @@ let g:vimtex_view_general_options= '--unique @pdf\#src:@line@tex'
 let g:vimtex_view_general_options_latexmk = '--unique'
 
 "Python execution on F9
-nnoremap <silent> <F9> :!clear;python %<CR>
+nnoremap <silent> <F9> :!clear;python3 %<CR>
 
 "Buffer shortcuts
 map gn :bn<cr>
@@ -94,7 +94,14 @@ let g:ycm_global_ycm_extra_conf = "~/.ycm_extra_conf.py"
 let g:EclimCompletionMethod = 'omnifunc'
 let g:ycm_autoclose_preview_window_after_insertion = 1
 set completeopt-=preview
-let g:ycm_python_binary_path = '/usr/bin/python2.7'
 "autocmd FileType javascript setlocal omnifunc=tern#Complete
 highlight YcmErrorSection ctermfg=red cterm=underline
+"let g:ycm_python_binary_path = '/usr/bin/python3'
+"let g:ycm_server_python_interpreter='/usr/bin/python3'
+let g:ycm_python_interpreter_path = ''
+let g:ycm_python_sys_path = []
+let g:ycm_extra_conf_vim_data = [
+  \  'g:ycm_python_interpreter_path',
+  \  'g:ycm_python_sys_path'
+  \]
 
