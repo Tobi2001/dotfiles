@@ -24,6 +24,7 @@ set shiftwidth=4
 set smartindent
 set smarttab
 set softtabstop=4
+set expandtab
 
 set autoread
 set ruler
@@ -31,6 +32,17 @@ set undolevels=1000
 set backspace=indent,eol,start
 
 set t_Co=256
+
+"Paste without automatic indendation
+set pastetoggle=<F2>
+
+"Disable q/Q commands to avoid using them by accident
+map q <Nop>
+map Q <Nop>
+
+"No flashing window or beep
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
 
 let g:tex_flavor='latex'
 
