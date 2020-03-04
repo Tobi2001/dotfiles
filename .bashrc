@@ -130,3 +130,30 @@ export EDITOR="$VISUAL"
 #CUDA
 PATH=$PATH:/usr/local/cuda-10.0/bin
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-10.0/lib64
+
+# GDB
+gdb-tmux-helper()
+{
+    clear;
+    local id="$(tmux split-window -hPF "#D" "tail -f /dev/null")"
+    tmux last-pane
+    local tty="$(tmux display-message -p -t "$id" '#{pane_tty}')"
+    gdb -ex "dashboard -output $tty" "$@"
+    tmux kill-pane -t "$id"
+}
+
+tgdb() {
+    if tmux ls ; then
+        if [ -z "$TMUX" ]; then
+            tmux new-window -n 'gdb'
+            tmux send-keys "gdb-tmux-helper $@" C-m
+            tmux attach
+        else
+            gdb-tmux-helper "$@"
+        fi
+    else
+        tmux new-session -d
+        tmux send-keys "gdb-tmux-helper $@" C-m
+        tmux attach
+    fi
+}
