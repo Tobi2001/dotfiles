@@ -77,6 +77,7 @@ fi
 installVimPackage https://github.com/vim-airline/vim-airline.git
 installVimPackage https://github.com/preservim/nerdtree.git
 installVimPackage https://github.com/tpope/vim-surround.git
+installVimPackage https://github.com/christoomey/vim-tmux-navigator.git
 
 if installVimPackage https://github.com/ycm-core/YouCompleteMe.git; then
     sudo apt install build-essential cmake python3-dev

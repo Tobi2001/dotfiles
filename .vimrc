@@ -76,9 +76,8 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:airline_theme = 'dark'
 
 "Nerdtree
-
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-map <C-k> :NERDTreeToggle<cr>
+map <Tab> :NERDTreeToggle<cr>
 
 "Tagbar
 nmap <F8> :TagbarToggle<cr>
