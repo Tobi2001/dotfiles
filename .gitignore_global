@@ -20,7 +20,7 @@ $RECYCLE.BIN/
 
 # IDE #
 #######
-.swp
+*.swp
 
 # Generated files #
 ###################
