@@ -102,3 +102,5 @@ if [ ! -e ~/.config/QtProject/qtcreator/uncrustify/code_style.cfg ]; then
 fi
 
 rm -rf "$tmp_dir"
+echo -e "${GREEN}Setup completed${NC}"
+exit 0

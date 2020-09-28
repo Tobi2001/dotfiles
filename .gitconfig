@@ -2,7 +2,7 @@
         name = Tobias Allgeyer
         email = tobiallgeyer@web.de
 [core]
-        excludesfile = /home/tallgeyer/.gitignore_global
+        excludesfile = /home/tobias/.gitignore_global
 [alias]
         tree = log --graph --abbrev-commit --decorate --format=format:'%C(bold cyan)%h%C(reset) %C(green)(%ar)%C(reset) %C(dim white)- %an%C(reset) %C(auto)%d%C(reset)\n   ↳ %C(reset)%s%C(reset)'
         full-tree = !"git tree --all"
