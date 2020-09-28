@@ -13,7 +13,7 @@ flags = [
 ]
 
 my_flags = [
-'-I', '/usr/include/c++/6'
+'-I', '/usr/include/c++/9'
 #'-I', '/usr/include/x86_64-linux-gnu/c++/6',
 #'-I', '/usr/include/c++/6/backward',
 #'-I', '/usr/lib/gcc/x86_64-linux-gnu/6/include',

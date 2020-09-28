@@ -9,6 +9,7 @@ set wildmenu
 set wildmode=list:longest
 
 set number
+set relativenumber
 set linebreak
 set showbreak=+++
 set showmatch

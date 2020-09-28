@@ -4,6 +4,8 @@
 cur_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 tmp_dir=$(mktemp -d) || { echo "Failed to create temp file"; exit 1; }
 
+sudo apt update
+
 # Stdout colors
 RED='\033[0;31m'
 YELLOW='\033[0;33m'
@@ -18,13 +20,14 @@ function promptOverride {
             case $yn in
                 "" )
                     ;&
-                [Yy]*) 
+                [Yy]*)
                     cp -r "$1" "$2"
-                    break;;
-                [Nn]*) 
+                    break
+                    ;;
+                [Nn]*)
                     return
                     ;;
-                *) 
+                *)
                     echo "Please answer yes or no"
                     ;;
             esac
@@ -47,6 +50,9 @@ if [ ! -d ~/.tmux/plugins/tmux-yank ]; then
 fi
 
 # Vim
+if ! command -v gvim &> /dev/null; then
+    sudo apt install vim-gtk3
+fi
 promptOverride "$cur_dir"/.ycm_extra_conf.py ~
 promptOverride "$cur_dir"/.vimrc ~
 
@@ -101,6 +107,25 @@ if [ ! -e ~/.config/QtProject/qtcreator/uncrustify/code_style.cfg ]; then
     mkdir -p ~/.config/QtProject/qtcreator/uncrustify
     cp  "$cur_dir"/uncrustify/code_style.cfg "$_"
 fi
+
+# .bashrc
+while true; do
+    read -p "$(echo -e "${YELLOW}Append config to .bashrc? [y] ${NC}")" yn
+    case $yn in
+        "" )
+            ;&
+        [Yy]*)
+            cat "$cur_dir"/templates/.bashrc >> ~/.bashrc
+            break
+            ;;
+        [Nn]*)
+            break
+            ;;
+        *)
+            echo "Please answer yes or no"
+            ;;
+    esac
+done
 
 rm -rf "$tmp_dir"
 echo -e "${GREEN}Setup completed${NC}"
