@@ -34,6 +34,8 @@ set backspace=indent,eol,start
 
 set t_Co=256
 
+set hidden
+
 "Paste without automatic indendation
 set pastetoggle=<F2>
 
