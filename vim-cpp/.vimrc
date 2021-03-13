@@ -2,6 +2,9 @@
 "### Basic settings ###
 "######################
 
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+
 syntax on
 
 set wildmenu
@@ -36,6 +39,9 @@ set t_Co=256
 set hidden
 set splitbelow
 set splitright
+
+"Show line at 120 characters
+:set colorcolumn=120
 
 "Paste without automatic indendation
 set pastetoggle=<F2>
@@ -78,13 +84,40 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-surround'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
+    Plug 'embear/vim-uncrustify'
+    Plug 'preservim/nerdtree'
 call plug#end()
 
 
 "#######################
 "### Plugin settings ###
 "#######################
-"
+
+"netrw (file explorer)
+let g:netrw_liststyle = 3
+let g:netrw_banner = 0
+let g:netrw_browse_split = 4
+let g:netrw_winsize = 15
+let g:netrw_altv = 1
+let g:netrw_list_hide = &wildignore
+
+augroup netrw_mapping
+    autocmd!
+    autocmd filetype netrw call NetrwMapping()
+augroup END
+
+function! NetrwMapping()
+    nnoremap <silent> <buffer> <c-l> :TmuxNavigateRight<CR>
+endfunction
+
+"Nerdtree
+nnoremap <leader>m :NERDTreeToggle<CR>
+nnoremap <leader>f :NERDTreeFind<CR>
+
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
 "vim-cpp-modern
 let g:cpp_attributes_highlight = 1
 
@@ -99,6 +132,11 @@ let g:airline_theme = 'dark'
 let g:afterglow_blackout=1
 let g:afterglow_italic_comments=1 
 colorscheme afterglow
+
+"vim-uncrustify
+let g:uncrustify_command="/home/tobias/workspace/core/install/uncrustify_vendor/bin/uncrustify"
+let g:uncrustify_config_file="/home/tobias/.config/uncrustify/code_style.cfg"
+autocmd BufWritePre * if (&filetype == 'cpp') | call Uncrustify() | endif
 
 "CoC
 let g:coc_global_extensions = ['coc-clangd', 'coc-pairs']
