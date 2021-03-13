@@ -33,5 +33,6 @@ cur_path="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
 cp "$cur_path"/.vimrc ~/
 sed -i "s/tobias/$username/" ~/.vimrc
 cp -r "$cur_path"/after ~/.vim/
+cp "$cur_path"/coc-settings.json ~/.vim/
 cp "$cur_path"/../.tmux.conf ~/
 cp -r "$cur_path"/../uncrustify/ ~/.config/
