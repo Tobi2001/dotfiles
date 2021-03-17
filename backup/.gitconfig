@@ -1,0 +1,18 @@
+[user]
+	name = Tobias Allgeyer
+	email = t.allgeyer@eu.denso.com
+[http]
+	proxy = http://172.20.73.40:80
+[core]
+	excludesfile = /home/ros2/.gitignore_global
+[alias]
+        tree = log --graph --abbrev-commit --decorate --format=format:'%C(bold cyan)%h%C(reset) %C(green)(%ar)%C(reset) %C(dim white)- %an%C(reset) %C(auto)%d%C(reset)\n   ↳ %C(reset)%s%C(reset)'
+        full-tree = !"git tree --all"
+        tree-branches = log --graph --all --format=oneline --simplify-by-decoration --abbrev-commit
+[merge]
+	conflictstyle = diff3
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
