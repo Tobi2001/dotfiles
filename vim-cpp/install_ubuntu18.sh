@@ -36,3 +36,6 @@ cp -r "$cur_path"/after ~/.vim/
 cp "$cur_path"/coc-settings.json ~/.vim/
 cp "$cur_path"/../.tmux.conf ~/
 cp -r "$cur_path"/../uncrustify/ ~/.config/
+
+mkdir -p ~/.tmux/plugins/
+git clone https://github.com/tmux-plugins/tmux-yank ~/.tmux/plugins/
