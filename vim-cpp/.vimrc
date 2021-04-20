@@ -134,7 +134,7 @@ let g:afterglow_italic_comments=1
 colorscheme afterglow
 
 "vim-uncrustify
-let g:uncrustify_command="/home/tobias/workspace/core/install/uncrustify_vendor/bin/uncrustify"
+let g:uncrustify_command="/home/tobias/.config/uncrustify/uncrustify/build/uncrustify"
 let g:uncrustify_config_file="/home/tobias/.config/uncrustify/code_style.cfg"
 autocmd BufWritePre * if (&filetype == 'cpp') | call Uncrustify() | endif
 

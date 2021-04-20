@@ -39,3 +39,12 @@ cp -r "$cur_path"/../uncrustify/ ~/.config/
 
 mkdir -p ~/.tmux/plugins/
 git clone https://github.com/tmux-plugins/tmux-yank ~/.tmux/plugins/
+
+cd ~/.config/uncrustify/
+git clone https://github.com/uncrustify/uncrustify.git
+cd uncrustify
+git checkout 45b836cff
+mkdir build
+cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release
+make
