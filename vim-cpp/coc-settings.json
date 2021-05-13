@@ -1,3 +1,5 @@
 {
-    "clangd.semanticHighlighting": "true"
+    "clangd.semanticHighlighting": true,
+    "sh.highlightParsingErrors": true,
+    "yaml.format.enable": true
 } 

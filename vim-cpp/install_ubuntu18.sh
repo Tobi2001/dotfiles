@@ -51,6 +51,8 @@ curl -fLo /home/"$username"/.vim/autoload/plug.vim --create-dirs \
 sudo -u "$username" python3 -m pip install --user -U autopep8
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 1
 
+sudo npm i -g bash-language-server
+
 # Set up scripts and configurations
 cur_path="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
 cp "$cur_path"/.vimrc /home/"$username"/

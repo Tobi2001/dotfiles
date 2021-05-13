@@ -139,7 +139,7 @@ let g:uncrustify_config_file="/home/tobias/.config/uncrustify/code_style.cfg"
 autocmd BufWritePre * if (&filetype == 'cpp') | call Uncrustify() | endif
 
 "CoC
-let g:coc_global_extensions = ['coc-clangd', 'coc-pairs', 'coc-pyright']
+let g:coc_global_extensions = ['coc-clangd', 'coc-pairs', 'coc-pyright', 'coc-sh', 'coc-json', 'coc-yaml']
 set updatetime=300
 set shortmess+=c
 if has("patch-8.1.1564")
