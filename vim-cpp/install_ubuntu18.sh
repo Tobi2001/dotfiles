@@ -42,11 +42,14 @@ sudo apt-get install -y nodejs
 
 sudo add-apt-repository -y ppa:jonathonf/vim
 sudo apt-get update
-sudo apt-get install -y vim clangd-10
+sudo apt-get install -y vim clangd-10 python3-pip
 sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-10 100
 
 curl -fLo /home/"$username"/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+sudo -u "$username" python3 -m pip install --user -U autopep8
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 1
 
 # Set up scripts and configurations
 cur_path="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"

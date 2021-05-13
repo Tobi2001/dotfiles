@@ -139,7 +139,7 @@ let g:uncrustify_config_file="/home/tobias/.config/uncrustify/code_style.cfg"
 autocmd BufWritePre * if (&filetype == 'cpp') | call Uncrustify() | endif
 
 "CoC
-let g:coc_global_extensions = ['coc-clangd', 'coc-pairs']
+let g:coc_global_extensions = ['coc-clangd', 'coc-pairs', 'coc-pyright']
 set updatetime=300
 set shortmess+=c
 if has("patch-8.1.1564")
@@ -184,3 +184,11 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
   vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
+
+command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+
+aug python
+  au!
+  au BufWrite *.py call CocAction('format')
+aug END
