@@ -86,6 +86,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf.vim'
     Plug 'embear/vim-uncrustify'
     Plug 'preservim/nerdtree'
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 call plug#end()
 
 
@@ -139,7 +140,8 @@ let g:uncrustify_config_file="/home/tobias/.config/uncrustify/code_style.cfg"
 autocmd BufWritePre * if (&filetype == 'cpp') | call Uncrustify() | endif
 
 "CoC
-let g:coc_global_extensions = ['coc-clangd', 'coc-pairs', 'coc-pyright', 'coc-sh', 'coc-json', 'coc-yaml']
+let g:coc_global_extensions = [
+  \'coc-clangd', 'coc-pairs', 'coc-pyright', 'coc-sh', 'coc-json', 'coc-yaml', 'coc-markdownlint']
 set updatetime=300
 set shortmess+=c
 if has("patch-8.1.1564")
