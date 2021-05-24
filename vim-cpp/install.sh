@@ -36,25 +36,18 @@ if [ -d "/home/${username}/.vim" ]; then
 fi
 
 # Install dependencies
-curl -sL https://deb.nodesource.com/setup_14.x -o /tmp/nodesource_setup.sh
-sudo bash /tmp/nodesource_setup.sh
-sudo apt-get install -y nodejs
-
-sudo add-apt-repository -y ppa:jonathonf/vim
-sudo apt-get update
-sudo apt-get install -y vim clangd-10 python3-pip
-sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-10 100
-
-curl -fLo /home/"$username"/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-sudo -u "$username" python3 -m pip install --user -U autopep8
-sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 1
-
-sudo npm i -g bash-language-server
+cur_path="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
+ubuntu_version="$(lsb_release -rs)"
+if [ "$ubuntu_version" = "20.04" ]; then
+    source "$cur_path"/install_ubuntu20_deps.sh
+elif [ "$ubuntu_version" = "18.04" ]; then
+    source "$cur_path"/install_ubuntu18_deps.sh
+else
+    echo "Ubuntu version $ubuntu_version is not supported" &>2
+    exit 1
+fi
 
 # Set up scripts and configurations
-cur_path="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
 cp "$cur_path"/.vimrc /home/"$username"/
 sed -i "s/tobias/$username/" /home/"$username"/.vimrc
 cp -r "$cur_path"/after /home/"$username"/.vim/
@@ -78,3 +71,4 @@ make
 
 # Install vim plugins
 vim -es -u /home/"$username"/.vimrc -i NONE -c "PlugInstall" -c "qa"
+
