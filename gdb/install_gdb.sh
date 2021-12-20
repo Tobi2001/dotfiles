@@ -10,5 +10,5 @@ echo "Removing old installation..."
 [ -d /home/"$username"/.gdbinit.d ] && rm -rf /home/"$username"/.gdbinit.d
 
 echo "Copying config files..."
-cp "$cur_path"/.gdbinit /home/"$username"/
-cp -r "$cur_path"/.gdbinit.d /home/"$username"/
+cp "$cur_path"/gdbinit /home/"$username"/.gdbinit
+cp -r "$cur_path"/gdbinit.d /home/"$username"/.gdbinit.d

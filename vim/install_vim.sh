@@ -18,7 +18,7 @@ curl -fLo /home/"$username"/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Set up scripts and configurations
-cp "$cur_path"/.vimrc /home/"$username"/
+cp "$cur_path"/vimrc /home/"$username"/.vimrc
 sed -i "s/tobias/$username/" /home/"$username"/.vimrc
 cp -r "$cur_path"/after /home/"$username"/.vim/
 cp "$cur_path"/coc-settings.json /home/"$username"/.vim/

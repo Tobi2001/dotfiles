@@ -10,7 +10,7 @@ cur_path="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)"
 [ -e /home/"$username"/.tmux ] && rm -rf /home/"$username"/.tmux
 
 # Install config
-cp "$cur_path"/.tmux.conf /home/"$username"/
+cp "$cur_path"/tmux.conf /home/"$username"/.tmux.conf
 
 # Fetch tmux-yank plugin
 mkdir -p /home/"$username"/.tmux/plugins/
