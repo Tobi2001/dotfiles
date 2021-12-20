@@ -90,3 +90,9 @@ tgdb() {
         tmux attach
     fi
 }
+
+#######
+# FZF #
+#######
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

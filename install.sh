@@ -56,3 +56,8 @@ echo "###################"
 echo "# Installing bash #"
 echo "###################"
 "$cur_path"/bash/install_bash.sh "$username"
+
+echo "##################"
+echo "# Installing fzf #"
+echo "##################"
+"$cur_path"/fzf/install_fzf.sh "$username"
