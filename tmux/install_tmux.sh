@@ -14,4 +14,4 @@ cp "$cur_path"/tmux.conf /home/"$username"/.tmux.conf
 
 # Fetch tmux-yank plugin
 mkdir -p /home/"$username"/.tmux/plugins/
-git clone https://github.com/tmux-plugins/tmux-yank /home/"$username"/.tmux/plugins/
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
