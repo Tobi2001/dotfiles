@@ -1,0 +1,92 @@
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+###########
+# General #
+###########
+
+# Case-insensitive tab completetion
+bind 'set completion-ignore-case on'
+
+# Show tab completion options on the first press of TAB
+#bind 'set show-all-if-ambiguous on'
+#bind 'set show-all-if-unmodified on'
+
+# Use vim keys
+set -o vi
+
+# Prompt color
+PS1='\[\033[1;91m\]\u\[\033[1;91m\]@\[\033[1;91m\]\h:\[\033[1;93m\]\w\[\033[1;93m\]\$\[\033[0m\] '
+
+# Make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+
+###########
+# History #
+###########
+
+export HISTCONTROL=ignoreboth
+shopt -s histappend
+export HISTSIZE=10000
+export HISTFILESIZE=20000
+export HISTTIMEFORMAT="[%F %T] "
+
+
+###########
+# Aliases #
+###########
+
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+
+###########
+# Exports #
+###########
+
+export VISUAL=vim
+export EDITOR="$VISUAL"
+PATH="~/.local/bin:$PATH"
+
+
+#######
+# GDB #
+#######
+
+gdb-tmux-helper()
+{
+    clear;
+    local id="$(tmux split-window -hPF "#D" "tail -f /dev/null")"
+    tmux last-pane
+    local tty="$(tmux display-message -p -t "$id" '#{pane_tty}')"
+    gdb -ex "dashboard -output $tty" "$@"
+    tmux kill-pane -t "$id"
+}
+
+tgdb() {
+    if tmux ls ; then
+        if [ -z "$TMUX" ]; then
+            tmux new-window -n 'gdb'
+            tmux send-keys "gdb-tmux-helper $@" C-m
+            tmux attach
+        else
+            gdb-tmux-helper "$@"
+        fi
+    else
+        tmux new-session -d
+        tmux send-keys "gdb-tmux-helper $@" C-m
+        tmux attach
+    fi
+}

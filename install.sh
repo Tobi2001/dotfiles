@@ -51,3 +51,8 @@ echo "##################"
 echo "# Installing gdb #"
 echo "##################"
 "$cur_path"/gdb/install_gdb.sh "$username"
+
+echo "###################"
+echo "# Installing bash #"
+echo "###################"
+"$cur_path"/bash/install_bash.sh "$username"
